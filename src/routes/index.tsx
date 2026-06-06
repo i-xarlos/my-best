@@ -13,7 +13,7 @@ import {
   Globe,
   Wrench,
 } from "lucide-react";
-import heroPortrait from "@/assets/carlos-protrait.png";
+import heroPortrait from "@/assets/carlos-portrait-2.png";
 
 const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
@@ -209,7 +209,7 @@ function Hero() {
             Platform · Framework · Performance
           </div>
           <h1 className="font-display font-bold text-5xl md:text-7xl lg:text-8xl leading-[0.95] mb-6">
-            Hi, I'm <span className="text-glow text-primary">Carlos</span>.
+            Hi, I'm <span className="text-indigo-glow text-primary">Carlos</span>.
             <br />I build platforms.
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-10">
@@ -248,6 +248,7 @@ function Hero() {
             alt="Abstract developer portrait"
             width={1024}
             height={1024}
+            style={{ filter: "contrast(110%)" }}
             className="relative rounded-2xl border border-border shadow-[var(--shadow-card)]"
           />
         </motion.div>
