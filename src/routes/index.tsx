@@ -5,9 +5,13 @@ import {
   Mail,
   Phone,
   Download,
-  Code2,
   Sparkles,
-  ExternalLink,
+  Layers,
+  Cpu,
+  Gauge,
+  Boxes,
+  Globe,
+  Wrench,
 } from "lucide-react";
 import heroPortrait from "@/assets/hero-portrait.jpg";
 
@@ -21,97 +25,98 @@ const TwitterIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="currentColor" {...props}><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
 );
 
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Carlos — Software Developer & Web Designer" },
+      { title: "Carlos — Senior Platform & Framework Engineer" },
       {
         name: "description",
         content:
-          "10+ years building modern web experiences. React, front-end architecture, and design-driven development.",
+          "Senior software engineer specialized in hybrid Windows platforms (React Native + WebView2 + .NET), modular architecture and performance optimization.",
       },
     ],
   }),
   component: Portfolio,
 });
 
-const projects = [
+const specialties = [
   {
-    title: "Color Centro",
-    role: "UI Review & React Development",
-    year: "2022",
-    url: "https://www.colorcentro.com.pe/",
-    tags: ["React", "UI"],
+    icon: Layers,
+    title: "Modular Architecture",
+    desc: "Independently installable, versioned modules with well-defined contracts — microfrontends, plugins and modular monoliths.",
   },
   {
-    title: "Ncomunicaciones",
-    role: "Front-end Lead · 5+ years",
-    year: "2017–2022",
-    url: "http://www.ncom.pe/",
-    tags: ["Front-end", "HTML/CSS"],
+    icon: Wrench,
+    title: "Framework Engineering",
+    desc: "Internal SDKs, reusable libraries, JSON-driven execution engines and NuGet packages that other teams build on top of.",
   },
   {
-    title: "Effectus Fischman",
-    role: "PHP Developer · CMS",
-    year: "2019",
-    url: "https://www.effectusfischman.com/",
-    tags: ["PHP", "CMS"],
+    icon: Cpu,
+    title: "React Native Windows",
+    desc: "Native modules, TurboModules, C# interop, lifecycle internals and rendering pipeline deep-dives.",
   },
   {
-    title: "Teatro La Plaza Isil",
-    role: "UI / CSS & HTML",
-    year: "2016",
-    url: null,
-    tags: ["UI", "HTML"],
+    icon: Globe,
+    title: "WebView2 & Hybrid",
+    desc: "Prewarm strategies, CoreWebView2 reuse, hybrid React + WebView2 inside MAUI and UWP shells.",
   },
   {
-    title: "Catdmc",
-    role: "UI / AS3 Developer",
-    year: "2014",
-    url: "http://www.catdmc.com/",
-    tags: ["UI", "Interactive"],
+    icon: Gauge,
+    title: "Performance & Startup",
+    desc: "Bundling, runtime initialization, render scheduling — shaving seconds off cold-start and native component creation.",
   },
   {
-    title: "El Comercio Móvil",
-    role: "UI / Mobile Version",
-    year: "2013",
-    url: "http://m.elcomercio.pe/iphone",
-    tags: ["Mobile", "UI"],
+    icon: Boxes,
+    title: "Windows App Lifecycle",
+    desc: "UWP, WinUI, Windows App SDK, startup tasks, suspension/resume and local persistence with SQLite.",
   },
 ];
 
 const experience = [
   {
-    period: "2022 — Present",
-    role: "Senior Front-end Developer",
-    company: "Freelance & Contract",
-    detail: "Building React applications and design systems for international clients.",
+    period: "Present",
+    role: "Senior Software Engineer — Platform",
+    company: "Hybrid Windows Platforms",
+    detail:
+      "Designing modular platforms where multiple teams ship independently versioned modules. Deep work in React Native Windows, WebView2 and .NET interop.",
   },
   {
-    period: "2017 — 2022",
-    role: "Front-end Developer",
-    company: "Ncomunicaciones",
-    detail: "Led the front-end team across multiple campaigns and product launches.",
+    period: "Recent",
+    role: "Framework Engineer",
+    company: "Internal SDKs & Tooling",
+    detail:
+      "Built internal NuGet packages, JSON-configurable execution engines and reusable infrastructure for microfrontends and native module hosting.",
   },
   {
-    period: "2013 — 2017",
-    role: "UI Developer",
-    company: "Various Agencies",
-    detail: "Designed and developed interactive sites with AS3, HTML5 and modern JS.",
+    period: "Earlier",
+    role: "Senior Front-end Engineer",
+    company: "React / TypeScript",
+    detail:
+      "TypeScript, React, Redux + Redux Saga, Webpack, Jest. Bundling, rendering and runtime performance analysis across large product surfaces.",
   },
   {
-    period: "2008 — 2013",
-    role: "Designer & Front-end",
-    company: "Early career",
-    detail: "First steps as a designer and developer — learning craft, shipping daily.",
+    period: "Foundations",
+    role: "Web Developer & UI Engineer",
+    company: "Agency & product work",
+    detail:
+      "10+ years shipping web experiences — from interactive sites and CMS work to modern front-end architecture and design systems.",
   },
 ];
 
-const stack = [
-  "React", "TypeScript", "Next.js", "Node.js",
-  "Tailwind", "GSAP", "Framer Motion", "Vite",
-  "PHP", "CMS", "UI Design", "Design Systems",
+const microsoftStack = [
+  "C#", ".NET", ".NET MAUI", "UWP", "WinUI", "Windows App SDK",
+  "WebView2", "SQLite (Microsoft.Data.Sqlite)", "Visual Studio Enterprise",
+];
+
+const jsStack = [
+  "TypeScript", "JavaScript", "React", "React Native", "React Native Windows",
+  "Redux", "Redux Saga", "Webpack", "Jest",
+];
+
+const practiceStack = [
+  "Modular Architecture", "Microfrontends", "Native Modules", "TurboModules",
+  "Performance Profiling", "Startup Optimization", "Feature Flags (LaunchDarkly)",
+  "Observability", "Event Buses",
 ];
 
 function Portfolio() {
@@ -120,7 +125,8 @@ function Portfolio() {
       <Nav />
       <Hero />
       <About />
-      <Projects />
+      <Specialties />
+      <Stack />
       <Experience />
       <Contact />
       <Footer />
@@ -137,7 +143,8 @@ function Nav() {
         </a>
         <nav className="hidden md:flex gap-8 text-sm text-muted-foreground">
           <a href="#about" className="hover:text-foreground transition">About</a>
-          <a href="#work" className="hover:text-foreground transition">Work</a>
+          <a href="#specialties" className="hover:text-foreground transition">Specialties</a>
+          <a href="#stack" className="hover:text-foreground transition">Stack</a>
           <a href="#experience" className="hover:text-foreground transition">Experience</a>
           <a href="#contact" className="hover:text-foreground transition">Contact</a>
         </nav>
@@ -163,31 +170,32 @@ function Hero() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary text-xs font-mono text-muted-foreground mb-6 border border-border">
             <span className="size-2 rounded-full bg-primary animate-pulse" />
-            Available for new projects
+            Platform · Framework · Performance
           </div>
           <h1 className="font-display font-bold text-5xl md:text-7xl lg:text-8xl leading-[0.95] mb-6">
             Hi, I'm <span className="text-glow text-primary">Carlos</span>.
             <br />
-            I build the web.
+            I build platforms.
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed mb-10">
-            Software developer & web designer with <strong className="text-foreground">10+ years</strong> shaping
-            interfaces, design systems and front-end architecture for ambitious teams.
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-10">
+            Senior software engineer specialized in <strong className="text-foreground">hybrid Windows platforms</strong> —
+            React Native Windows, WebView2 and .NET. I design modular architectures and squeeze
+            performance out of the runtime.
           </p>
           <div className="flex flex-wrap gap-4">
             <a
-              href="#work"
+              href="#specialties"
               className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:shadow-[var(--shadow-glow)] transition-all"
             >
-              See my work
+              What I do
               <ArrowUpRight className="size-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition" />
             </a>
             <a
-              href="https://i-xarlos.github.io/ixarlos/downloads/cv2020.pdf"
+              href="#contact"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border hover:bg-secondary transition"
             >
-              <Download className="size-4" />
-              Download CV
+              <Mail className="size-4" />
+              Get in touch
             </a>
           </div>
         </motion.div>
@@ -218,82 +226,95 @@ function About() {
       <div className="max-w-6xl mx-auto grid md:grid-cols-[1fr_1.5fr] gap-12">
         <div>
           <p className="font-mono text-xs uppercase tracking-widest text-primary mb-3">01 · About</p>
-          <h2 className="text-4xl md:text-5xl font-bold">Who I am.</h2>
+          <h2 className="text-4xl md:text-5xl font-bold">Platform engineer at heart.</h2>
         </div>
         <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
           <p>
-            I'm a developer who welcomes challenging projects and enjoys working with people of all
-            disciplines. Self-motivated, hands-on, and obsessed with shipping work that meets deadlines
-            without compromising craft.
+            I work at the intersection of <strong className="text-foreground">cross-platform front-end</strong>,
+            native Windows applications, hybrid frameworks and execution infrastructure.
           </p>
           <p>
-            I look for roles with teams that promote best practices and care about a steady stream of
-            real customer work — not theater. Liberté, égalité, fraternité.
+            The questions I usually bring to the table aren't <em>"how do I build this screen?"</em> — they're
+            <em> "how do I design a platform so multiple teams can ship independent, versioned, decoupled
+            modules?"</em> or <em>"why is React Native Windows queuing this render, and how do I save two
+            seconds of startup latency?"</em>
           </p>
-          <div className="flex flex-wrap gap-2 pt-4">
-            {stack.map((s) => (
-              <span
-                key={s}
-                className="px-3 py-1.5 rounded-full bg-secondary border border-border text-sm text-foreground font-mono"
-              >
-                {s}
-              </span>
-            ))}
-          </div>
+          <p>
+            That puts me closer to <strong className="text-foreground">Platform Engineer / Framework
+            Engineer</strong> than to a traditional application developer — although I still ship product work
+            and care about craft end-to-end.
+          </p>
         </div>
       </div>
     </section>
   );
 }
 
-function Projects() {
+function Specialties() {
   return (
-    <section id="work" className="py-24 px-6 border-t border-border">
+    <section id="specialties" className="py-24 px-6 border-t border-border">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
           <div>
-            <p className="font-mono text-xs uppercase tracking-widest text-primary mb-3">02 · Selected Work</p>
-            <h2 className="text-4xl md:text-5xl font-bold">Recent projects.</h2>
+            <p className="font-mono text-xs uppercase tracking-widest text-primary mb-3">02 · Specialties</p>
+            <h2 className="text-4xl md:text-5xl font-bold">What I focus on.</h2>
           </div>
           <p className="text-muted-foreground max-w-sm">
-            A handful of projects across product, agency and freelance work.
+            Six areas where I go deep — from architecture down to milliseconds of cold-start.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((p, i) => (
-            <motion.a
-              key={p.title}
-              href={p.url ?? "#"}
-              target={p.url ? "_blank" : undefined}
-              rel="noreferrer"
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {specialties.map((s, i) => (
+            <motion.div
+              key={s.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
               className="group relative p-8 rounded-2xl bg-card border border-border hover:border-primary/60 transition-all hover:shadow-[var(--shadow-glow)]"
             >
-              <div className="flex items-start justify-between mb-6">
-                <div className="size-12 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center text-primary">
-                  <Code2 className="size-5" />
-                </div>
-                <span className="font-mono text-xs text-muted-foreground">{p.year}</span>
+              <div className="size-12 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center text-primary mb-6">
+                <s.icon className="size-5" />
               </div>
-              <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition">{p.title}</h3>
-              <p className="text-muted-foreground mb-6">{p.role}</p>
-              <div className="flex items-center justify-between">
-                <div className="flex gap-2">
-                  {p.tags.map((t) => (
-                    <span key={t} className="text-xs font-mono text-muted-foreground">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                {p.url && (
-                  <ArrowUpRight className="size-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition" />
-                )}
+              <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition">{s.title}</h3>
+              <p className="text-muted-foreground leading-relaxed">{s.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Stack() {
+  const groups = [
+    { label: "Microsoft Ecosystem", items: microsoftStack },
+    { label: "JavaScript / TypeScript", items: jsStack },
+    { label: "Engineering Practice", items: practiceStack },
+  ];
+  return (
+    <section id="stack" className="py-24 px-6 border-t border-border">
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-12">
+          <p className="font-mono text-xs uppercase tracking-widest text-primary mb-3">03 · Stack</p>
+          <h2 className="text-4xl md:text-5xl font-bold">Tools of the trade.</h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-8">
+          {groups.map((g) => (
+            <div key={g.label}>
+              <h3 className="text-sm font-mono uppercase tracking-widest text-primary mb-4">{g.label}</h3>
+              <div className="flex flex-wrap gap-2">
+                {g.items.map((s) => (
+                  <span
+                    key={s}
+                    className="px-3 py-1.5 rounded-full bg-secondary border border-border text-sm text-foreground font-mono"
+                  >
+                    {s}
+                  </span>
+                ))}
               </div>
-            </motion.a>
+            </div>
           ))}
         </div>
       </div>
@@ -306,7 +327,7 @@ function Experience() {
     <section id="experience" className="py-24 px-6 border-t border-border">
       <div className="max-w-6xl mx-auto">
         <div className="mb-12">
-          <p className="font-mono text-xs uppercase tracking-widest text-primary mb-3">03 · Experience</p>
+          <p className="font-mono text-xs uppercase tracking-widest text-primary mb-3">04 · Experience</p>
           <h2 className="text-4xl md:text-5xl font-bold">A decade of building.</h2>
         </div>
 
@@ -353,12 +374,12 @@ function Contact() {
       />
       <div className="max-w-4xl mx-auto text-center relative">
         <Sparkles className="size-10 text-primary mx-auto mb-6" />
-        <p className="font-mono text-xs uppercase tracking-widest text-primary mb-3">04 · Contact</p>
+        <p className="font-mono text-xs uppercase tracking-widest text-primary mb-3">05 · Contact</p>
         <h2 className="text-5xl md:text-7xl font-bold mb-6">
-          Let's build <span className="text-glow text-primary">something</span>.
+          Let's build a <span className="text-glow text-primary">platform</span>.
         </h2>
         <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Have a project in mind, or just want to say hi? My inbox is open.
+          Hybrid Windows app, modular framework, or a stubborn performance bug? My inbox is open.
         </p>
 
         <a
@@ -392,7 +413,7 @@ function Footer() {
   return (
     <footer className="border-t border-border px-6 py-8">
       <div className="max-w-6xl mx-auto flex flex-wrap justify-between gap-4 text-sm text-muted-foreground">
-        <span>© {new Date().getFullYear()} Carlos · Built with care.</span>
+        <span>© {new Date().getFullYear()} Carlos · Senior Platform Engineer.</span>
         <span className="font-mono">Lima, Perú</span>
       </div>
     </footer>
