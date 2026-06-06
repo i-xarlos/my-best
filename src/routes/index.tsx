@@ -339,9 +339,9 @@ function Experience() {
 function Contact() {
   const links = [
     { icon: Mail, label: "ixarlos@gmail.com", href: "mailto:ixarlos@gmail.com" },
-    { icon: Linkedin, label: "linkedin/ixarlos", href: "https://www.linkedin.com/in/ixarlos/" },
-    { icon: Github, label: "github/i-xarlos", href: "https://github.com/i-xarlos" },
-    { icon: Twitter, label: "@Xarlos_", href: "https://twitter.com/Xarlos_" },
+    { icon: LinkedinIcon, label: "linkedin/ixarlos", href: "https://www.linkedin.com/in/ixarlos/" },
+    { icon: GithubIcon, label: "github/i-xarlos", href: "https://github.com/i-xarlos" },
+    { icon: TwitterIcon, label: "@Xarlos_", href: "https://twitter.com/Xarlos_" },
     { icon: Phone, label: "+51 962 373 235", href: "tel:+51962373235" },
   ];
 
