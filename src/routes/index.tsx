@@ -4,7 +4,6 @@ import {
   ArrowUpRight,
   Mail,
   Phone,
-  Download,
   Sparkles,
   Layers,
   Cpu,
