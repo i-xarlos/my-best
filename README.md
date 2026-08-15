@@ -13,7 +13,6 @@ Personal portfolio site for **Carlos** — Senior Platform & Framework Engineer.
 - [Tailwind CSS v4](https://tailwindcss.com/) — Utility-first CSS
 - [Framer Motion](https://www.framer.com/motion/) — Animations
 - [Radix UI](https://www.radix-ui.com/) — Accessible UI primitives
-- [Lovable.dev](https://lovable.dev/) — App scaffolding
 
 ## Project Structure
 
@@ -95,7 +94,7 @@ Automatically deployed to GitHub Pages on every push to `main` via GitHub Action
 ### How it works
 
 - `bun run build` generates static HTML via TanStack Start prerender
-- Output goes to `dist/`
+- Output goes to `dist/client/`
 - GitHub Actions uploads and deploys to Pages
 
 ## License

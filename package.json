@@ -1,11 +1,12 @@
 {
   "name": "tanstack_start_ts",
   "private": true,
+  "homepage": "https://i-xarlos.github.io/my-best",
   "sideEffects": false,
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build && cp dist/client/index.html dist/client/index.bak && sed 's|/assets/|/my-best/assets/|g' dist/client/index.bak > dist/client/index.html && rm dist/client/index.bak && cp dist/client/index.html dist/client/404.html && touch dist/client/.nojekyll",
+    "build": "vite build && cp dist/client/index.html dist/client/404.html && touch dist/client/.nojekyll",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
@@ -68,7 +69,6 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
-    "@lovable.dev/vite-tanstack-config": "^2.1.1",
     "@types/node": "^22.16.5",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
