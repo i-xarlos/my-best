@@ -10,16 +10,104 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
       - run: npm ci
       - run: npm run lint
       - run: npx tsc --noEmit
-      - run: npm run build
+      - name: Build
+        id: build
+        run: |
+          START=$(date +%s%3N)
+          npm run build 2>&1 | sed 's/\x1b\[[0-9;]*m//g' | tee build-output.txt
+          END=$(date +%s%3N)
+          echo "time=$(( END - START ))" >> $GITHUB_OUTPUT
+      - name: Comment build stats
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const raw = fs.readFileSync('build-output.txt', 'utf8');
+            const lines = raw.split('\n').filter(l => l.includes('dist/client'));
+
+            const assets = lines.map(l => {
+              const match = l.match(/dist\/client\/([\w\-\.\/]+)\s+([\d,]+\.\d+)\s*kB(?:\s*\|\s*gzip:\s*([\d.]+)\s*kB)?/);
+              if (!match) return null;
+              return {
+                name: match[1].replace('assets/', ''),
+                size: parseFloat(match[2].replace(',', '')),
+                gzip: match[3] ? parseFloat(match[3]) : null,
+                type: match[1].includes('.js') ? 'js' : match[1].includes('.css') ? 'css' : 'img'
+              };
+            }).filter(Boolean);
+
+            const jsFiles = assets.filter(a => a.type === 'js');
+            const cssFiles = assets.filter(a => a.type === 'css');
+            const imgFiles = assets.filter(a => a.type === 'img');
+
+            const totalJS = jsFiles.reduce((s, a) => s + a.size, 0);
+            const totalGzip = jsFiles.reduce((s, a) => s + (a.gzip || 0), 0);
+            const totalCSS = cssFiles.reduce((s, a) => s + a.size, 0);
+            const totalImg = imgFiles.reduce((s, a) => s + a.size, 0);
+            const totalAll = totalJS + totalCSS + totalImg;
+            const time = '${{ steps.build.outputs.time }}';
+
+            function formatSize(kb) {
+              return kb >= 1024 ? `${(kb / 1024).toFixed(2)} MB` : `${kb.toFixed(2)} kB`;
+            }
+
+            let body = `## 📊 Build Stats\n\n`;
+            body += `| Metric | Value |\n|--------|-------|\n`;
+            body += `| ⏱️ Build time | ${time}ms |\n`;
+            body += `| 📦 Total client | ${formatSize(totalAll)} |\n`;
+            body += `| 🗜️ Total gzip | ${formatSize(totalGzip)} |\n\n`;
+
+            body += `### JavaScript\n\n`;
+            body += `| File | Size | Gzip |\n|------|------|------|\n`;
+            jsFiles.forEach(f => {
+              body += `| \`${f.name}\` | ${formatSize(f.size)} | ${f.gzip ? formatSize(f.gzip) : '-'} |\n`;
+            });
+            body += `| **Total** | **${formatSize(totalJS)}** | **${formatSize(totalGzip)}** |\n\n`;
+
+            body += `### CSS\n\n`;
+            body += `| File | Size | Gzip |\n|------|------|------|\n`;
+            cssFiles.forEach(f => {
+              body += `| \`${f.name}\` | ${formatSize(f.size)} | ${f.gzip ? formatSize(f.gzip) : '-'} |\n`;
+            });
+
+            if (imgFiles.length) {
+              body += `\n### Images\n\n`;
+              body += `| File | Size |\n|------|------|\n`;
+              imgFiles.forEach(f => {
+                body += `| \`${f.name}\` | ${formatSize(f.size)} |\n`;
+              });
+            }
+
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const existing = comments.find(c => c.user.type === 'Bot' && c.body.includes('Build Stats'));
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                comment_id: existing.id, body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: context.issue.number, body,
+              });
+            }
 
   deploy:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -36,7 +124,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
       - run: npm ci
       - run: npm run build
