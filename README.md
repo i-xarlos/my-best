@@ -76,9 +76,27 @@ bun run format
 
 ## Links
 
-- **GitHub:** [i-xarlos/show-off-my-best](https://github.com/i-xarlos/show-off-my-best)
+- **GitHub:** [i-xarlos/my-best](https://github.com/i-xarlos/my-best)
 - **Author:** Carlos — [@Xarlos_](https://twitter.com/Xarlos_) · [LinkedIn](https://www.linkedin.com/in/ixarlos/)
 - **Contact:** ixarlos@gmail.com
+
+## Deployment
+
+Automatically deployed to GitHub Pages on every push to `main` via GitHub Actions.
+
+**Live site:** [https://i-xarlos.github.io/my-best/](https://i-xarlos.github.io/my-best/)
+
+### Setup
+
+1. Go to **GitHub → Settings → Pages → Source**
+2. Select **GitHub Actions**
+3. Push to `main` — the workflow handles the rest
+
+### How it works
+
+- `bun run build` generates static HTML via TanStack Start prerender
+- Output goes to `dist/`
+- GitHub Actions uploads and deploys to Pages
 
 ## License
 
