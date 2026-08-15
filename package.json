@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build && sed -i '' 's|/assets/|/my-best/assets/|g' dist/client/index.html && cp dist/client/index.html dist/client/404.html && touch dist/client/.nojekyll",
+    "build": "vite build && cp dist/client/index.html dist/client/index.bak && sed 's|/assets/|/my-best/assets/|g' dist/client/index.bak > dist/client/index.html && rm dist/client/index.bak && cp dist/client/index.html dist/client/404.html && touch dist/client/.nojekyll",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
