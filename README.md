@@ -64,19 +64,19 @@ bun run format
 
 ## Sections
 
-| Section      | Description                                              |
-| ------------ | -------------------------------------------------------- |
-| Hero         | Intro, role highlights and call-to-action                |
-| About        | Platform engineer philosophy and approach                |
-| Specialties  | Six core focus areas — architecture to performance       |
-| Stack        | Microsoft ecosystem, JS/TS and engineering practices     |
-| Experience   | Career timeline with key roles                           |
-| Contact      | Email, LinkedIn, GitHub, Twitter and phone               |
+| Section     | Description                                          |
+| ----------- | ---------------------------------------------------- |
+| Hero        | Intro, role highlights and call-to-action            |
+| About       | Platform engineer philosophy and approach            |
+| Specialties | Six core focus areas — architecture to performance   |
+| Stack       | Microsoft ecosystem, JS/TS and engineering practices |
+| Experience  | Career timeline with key roles                       |
+| Contact     | Email, LinkedIn, GitHub, Twitter and phone           |
 
 ## Links
 
 - **GitHub:** [i-xarlos/my-best](https://github.com/i-xarlos/my-best)
-- **Author:** Carlos — [@Xarlos_](https://twitter.com/Xarlos_) · [LinkedIn](https://www.linkedin.com/in/ixarlos/)
+- **Author:** Carlos — [@Xarlos\_](https://twitter.com/Xarlos_) · [LinkedIn](https://www.linkedin.com/in/ixarlos/)
 - **Contact:** ixarlos@gmail.com
 
 ## Deployment
